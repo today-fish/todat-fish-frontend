@@ -1,0 +1,21 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="112" height="112" viewBox="0 0 112 112" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Chat/FAB">
+<g id="FAB &#194;&#183; ocean-500 56px Draft" filter="url(#filter0_d_0_1492)">
+<circle cx="56" cy="46" r="28" fill="#007FAD"/>
+</g>
+<g id="Lucide / message-circle &#194;&#183; white">
+<path id="Vector" d="M64.625 45.5208C64.6283 46.7857 64.3328 48.0335 63.7625 49.1625C63.0863 50.5154 62.0468 51.6534 60.7605 52.4489C59.4741 53.2444 57.9916 53.6661 56.4792 53.6667C55.2143 53.67 53.9665 53.3744 52.8375 52.8042L47.375 54.625L49.1958 49.1625C48.6256 48.0335 48.33 46.7857 48.3333 45.5208C48.3339 44.0084 48.7556 42.5259 49.5511 41.2395C50.3466 39.9532 51.4846 38.9137 52.8375 38.2375C53.9665 37.6672 55.2143 37.3717 56.4792 37.375H56.9583C58.9558 37.4852 60.8425 38.3283 62.2571 39.7429C63.6717 41.1575 64.5148 43.0442 64.625 45.0417V45.5208Z" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" stroke="white"/>
+</g>
+</g>
+<defs>
+<filter id="filter0_d_0_1492" x="0" y="0" width="112" height="112" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dy="10"/>
+<feGaussianBlur stdDeviation="14"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0.0941176 0 0 0 0 0.203922 0 0 0 0 0.266667 0 0 0 0.18 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_0_1492"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_0_1492" result="shape"/>
+</filter>
+</defs>
+</svg>
