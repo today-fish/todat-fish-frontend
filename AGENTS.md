@@ -77,3 +77,13 @@ Do not block a PR solely for subjective preferences.
 - Do not manufacture findings.
 - If no meaningful issues are found, explicitly say so.
 - Do not automatically approve or request changes unless explicitly configured.
+
+## Code Review Language
+
+- All code review comments must be written in Korean.
+- Write review summaries and explanations in Korean.
+- Explain bugs, risks, and suggested fixes in Korean.
+- Keep code identifiers, file paths, API names, and technical terms
+  in their original form when appropriate.
+- Use clear, professional, and concise Korean.
+- Follow Google Engineering Practices for code review.
