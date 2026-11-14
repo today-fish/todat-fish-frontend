@@ -8,7 +8,7 @@
 - **품목 상세:** 반월·월별 가격 차트, 기간별 Price Insight, 최근 이슈, 데이터 품질 정보
 - **익명 채팅:** 서버 연결 없이 동작하는 로컬 시뮬레이션
 
-화면 이동은 URL 해시를 사용합니다. 예: `#/products/hairtail`.
+화면 이동은 Next.js App Router 경로를 사용합니다. 예: `/products/hairtail/`.
 
 ## 실행 방법
 
@@ -19,22 +19,23 @@ npm install
 npm run dev
 ```
 
-개발 서버는 기본적으로 `http://localhost:5173`에서 실행됩니다.
+개발 서버는 기본적으로 `http://localhost:3000`에서 실행됩니다. Node.js 20.9 이상이 필요합니다.
 
 ## 빌드
 
 ```bash
 npm run build
-npm run preview
 ```
 
-`npm run build`는 배포용 정적 파일을 `dist/`에 생성합니다. `npm run preview`는 해당 빌드 결과를 로컬에서 확인합니다.
+`npm run build`는 정적 배포 파일을 `out/`에 생성합니다. 정적 배포 시 `out/`을 사용합니다.
+
+설정 본문은 `config/`에 모았습니다. Next.js와 PostCSS가 자동 탐색하는 루트 설정 파일은 `config/`를 불러옵니다. TypeScript 설정은 Next.js 규약에 따라 루트에 둡니다.
 
 ## 기술 스택
 
 - React 19
 - TypeScript
-- Vite
+- Next.js 16 (App Router)
 - Tailwind CSS 4
 
 ## 데이터 및 범위
