@@ -1,4 +1,7 @@
+"use client"
+
 import { useEffect, useMemo, useRef, useState } from "react"
+import { usePathname, useRouter } from "next/navigation"
 import {
   calculateSummaryChange,
   formatPrice,
@@ -15,7 +18,7 @@ import {
   type Product,
   type ProductId,
   type RelatedIssue,
-} from "./products"
+} from "@/products"
 
 type Route = { page: "home" } | { page: "detail"; productId: ProductId }
 type DetailTab = "insight" | "issues"
@@ -26,22 +29,18 @@ const exitAnimationDuration = () =>
     ? 0
     : EXIT_ANIMATION_MS
 
-const readRoute = (): Route => {
-  const match = window.location.hash.match(/^#\/products\/([^/]+)$/)
+const readRoute = (pathname: string): Route => {
+  const match = pathname.match(/^\/products\/([^/]+)\/?$/)
   const product = productById(match?.[1] ?? null)
   return product ? { page: "detail", productId: product.id } : { page: "home" }
 }
 
 function useRoute() {
-  const [route, setRoute] = useState<Route>(readRoute)
-  useEffect(() => {
-    const sync = () => setRoute(readRoute())
-    window.addEventListener("hashchange", sync)
-    return () => window.removeEventListener("hashchange", sync)
-  }, [])
+  const pathname = usePathname()
+  const router = useRouter()
+  const route = readRoute(pathname)
   const navigate = (next: Route) => {
-    window.location.hash =
-      next.page === "home" ? "#/" : `#/products/${next.productId}`
+    router.push(next.page === "home" ? "/" : `/products/${next.productId}/`)
     window.scrollTo({ top: 0, behavior: "smooth" })
   }
   return { route, navigate }
@@ -305,24 +304,18 @@ function SearchResultsSkeleton() {
 function HomePage({ onProduct }: { onProduct: (id: ProductId) => void }) {
   const [query, setQuery] = useState("")
   const [settledQuery, setSettledQuery] = useState("")
-  const [isSearching, setIsSearching] = useState(false)
   const [feedback, setFeedback] = useState("")
   useEffect(() => {
-    const normalizedQuery = query.trim()
-    if (!normalizedQuery) {
-      setSettledQuery("")
-      setIsSearching(false)
-      return
-    }
-    setIsSearching(true)
     const timer = window.setTimeout(() => {
-      setSettledQuery(normalizedQuery)
-      setIsSearching(false)
+      setSettledQuery(query.trim())
     }, 350)
     return () => window.clearTimeout(timer)
   }, [query])
-  const filteredProducts = settledQuery
-    ? products.filter((product) => product.name.includes(settledQuery))
+  const normalizedQuery = query.trim()
+  const isSearching = Boolean(normalizedQuery && normalizedQuery !== settledQuery)
+  const activeQuery = normalizedQuery ? settledQuery : ""
+  const filteredProducts = activeQuery
+    ? products.filter((product) => product.name.includes(activeQuery))
     : products
   const submit = (event: React.FormEvent) => {
     event.preventDefault()
@@ -676,8 +669,6 @@ function PriceTrendChart({
     setRuntimeStatus("loading")
     setRuntimeStatus(await retryMockChart(product, period))
   }
-  useEffect(() => setRuntimeStatus(null), [product.id, period])
-
   return (
     <section className="chart-section" aria-labelledby="chart-title">
       <div className="section-heading section-heading--compact">
@@ -1072,6 +1063,7 @@ function ProductDetailPage({
       <DetailHeader product={product} />
       <PriceSummary product={product} />
       <PriceTrendChart
+        key={`${product.id}-${period}`}
         product={product}
         period={period}
         selectedId={selectedDataPoint}

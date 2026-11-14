@@ -1,13 +1,13 @@
 node_modules/
-dist/
-build/
+/.next/
+/out/
+/.github/
 .cache/
 .env*
 !.env.example
 !.env.*.example
-.vite/
-vite.config.*.timestamp-*
 *.tsbuildinfo
+next-env.d.ts
 *-debug.log*
 logs/
 *.log
