@@ -8,7 +8,7 @@
  * }
  */
 export function createCsrfTokenProvider(baseUrl: string) {
-  const csrfUrl = process.env.NEXT_PUBLIC_CSRF_URL ?? "";
+  const csrfUrl = process.env.NEXT_PUBLIC_CSRF_URL || "/api/auth/csrf";
   const url = new URL(csrfUrl, baseUrl);
 
   return async (signal: AbortSignal): Promise<string> => {
