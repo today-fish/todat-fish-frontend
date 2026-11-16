@@ -1,8 +1,5 @@
 // HTTP 요청 경로
 // "/"로 시작하는 문자열만 허용
-
-import { Middleware } from "next/dist/lib/load-custom-routes";
-
 export type ApiPath = `/${string}`;
 
 // 지원하는 HTTP 메소드
@@ -58,7 +55,7 @@ export interface HttpClientConfig {
   baseUrl: string;
   defaults?: FetchOptions;
   defaultHeaders?: HeadersInit;
-  headersProvider?: HeaderProvider[];
+  headerProviders?: HeaderProvider[];
   middlewares?: HttpMiddleware[];
   transport?: HttpHandler;
 }

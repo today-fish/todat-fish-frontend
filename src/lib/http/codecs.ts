@@ -1,4 +1,3 @@
-import { headers } from "next/headers";
 import type { BodyEncoder, ResponseDecoder } from "./type";
 
 // JavaScript값을 Json 문자열로 직력화
@@ -55,6 +54,6 @@ export const decodeBlob: ResponseDecoder = (response) => {
 };
 
 // 응답 본문이 필요하지 않은 경우
-export const decodeVoid: ResponseDecoder = async (response) => {
+export const decodeVoid: ResponseDecoder = async () => {
   return undefined;
 };
