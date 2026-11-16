@@ -30,10 +30,10 @@ export type HeaderProvider = (
 export type BodyEncoder = (body: unknown, headers: Headers) => BodyInit;
 
 // HTTp 응답 본문을 JavaScript로 변환
-export type ReponseDecoder = (response: Response) => Promise<unknown>;
+export type ResponseDecoder = (response: Response) => Promise<unknown>;
 
 // 응답 데이터의 런타임 검증
-export type ResponseValidate<T> = (value: unknown) => T;
+export type ResponseValidator<T> = (value: unknown) => T;
 
 // HTTP 요청을 실행하는 함수
 export type HttpHandler = (request: Request) => Promise<Response>;
@@ -49,8 +49,8 @@ export interface ApiRequestOptions<T> extends FetchOptions {
   headers?: HeadersInit;
   body?: unknown;
   encode?: BodyEncoder;
-  decode: ReponseDecoder;
-  validate: ResponseValidate<T>;
+  decode: ResponseDecoder;
+  validate: ResponseValidator<T>;
 }
 
 // HTTP 클라이언트 생성 설정
