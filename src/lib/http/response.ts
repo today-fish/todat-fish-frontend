@@ -23,11 +23,6 @@ async function readErrorPayload(response: Response): Promise<unknown> {
   }
 }
 
-// 요청 취소 오류인지 확인
-function isAbortError(error: unknown): boolean {
-  return error instanceof Error && error.name == "AbortError";
-}
-
 // HTTP 공통 응답 처리
 // 1. HTTP 상태 검사
 // 2. 응답 본문 디코딩
@@ -44,14 +39,12 @@ export async function handleApiResponse<T>(
     throw new ApiError(response.status, payload);
   }
 
-  // 2. 응답 몬문 디코딩
+  // 2. 응답 본문 디코딩
   let data: unknown;
   try {
     data = await decode(response);
   } catch (error) {
-    if (isAbortError(error)) {
-      throw new ApiDecodeError(response.status, error);
-    }
+    throw new ApiDecodeError(response.status, error);
   }
 
   // 3. 검증기가 없으면 디코딩 결과 반환

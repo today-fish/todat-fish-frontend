@@ -1,4 +1,4 @@
-import type { HttpMiddleware } from "./type";
+import type { HttpMiddleware } from "../type";
 
 // CSRF Middleware 실행
 export interface CsrfOptions {
